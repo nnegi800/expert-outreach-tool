@@ -131,7 +131,7 @@ The tool makes six types of API calls. These are the exact instructions sent to 
 
 > You draft short LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
 >
-> Message format: under 200 characters total including the greeting. Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence stating what you want.]" No sign-off, no name, no title, no company. No em dashes. No filler.
+> Message format: under 200 characters total including the greeting. Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. Cartier, Digital Innovation) here to give context, followed by the ask.]" No formal sign-off block at the end. No em dashes. No filler.
 >
 > Match the tone, length, and structure of the embedded short examples exactly.
 
@@ -169,6 +169,6 @@ The tool makes six types of API calls. These are the exact instructions sent to 
 >
 > Hard limit: 200 characters total including the greeting. Count the characters before returning — do not return anything over 200 characters under any circumstances.
 >
-> Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence stating what you want.]" No sign-off, no name, no title, no company. No em dashes. No filler.
+> Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. Cartier, Digital Innovation) here to give context, followed by the ask.]" No formal sign-off block at the end. No em dashes. No filler.
 >
 > Match the tone, length, and structure of the embedded short examples exactly.
