@@ -1,0 +1,2392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expert Outreach — Cartier</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f8f7f5;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #1a1a1a;
+      color: white;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-logo {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #e8d5a3;
+    }
+    .header-sub {
+      font-size: 12px;
+      color: #777;
+      margin-left: 16px;
+    }
+    .header-left { display: flex; align-items: center; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .header-campaign { font-size: 12px; color: #aaa; }
+    .header-btn {
+      background: none;
+      border: 1px solid #444;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    .header-btn:hover { color: white; border-color: #777; }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 44px 24px 80px;
+    }
+    .container-sm { max-width: 480px; }
+
+    /* ── Screens ── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ── Typography ── */
+    h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+    h2 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+    h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .subtext { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 24px; }
+
+    /* ── Form elements ── */
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: #888;
+      margin-bottom: 6px;
+      margin-top: 18px;
+    }
+    label:first-child { margin-top: 0; }
+
+    input[type="text"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      background: white;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #1a1a1a; }
+    textarea { min-height: 90px; resize: vertical; line-height: 1.6; }
+    textarea.tall { min-height: 160px; font-size: 13px; }
+    textarea.message-box { min-height: 200px; font-size: 13px; line-height: 1.7; }
+    .hint { font-size: 12px; color: #aaa; margin-top: 4px; margin-bottom: 4px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: #1a1a1a; color: white; }
+    .btn-primary:hover:not(:disabled) { background: #333; }
+    .btn-secondary { background: white; color: #1a1a1a; border: 1.5px solid #ddd; }
+    .btn-secondary:hover:not(:disabled) { border-color: #1a1a1a; }
+    .btn-ghost { background: none; color: #666; padding: 8px 12px; font-size: 13px; }
+    .btn-ghost:hover { color: #1a1a1a; background: #f0f0f0; border-radius: 6px; }
+    .btn-ghost.btn-active { background: #d4d4d4; color: #1a1a1a; border-radius: 6px; }
+    .btn-sm { padding: 7px 14px; font-size: 13px; }
+    .btn-xs { padding: 4px 10px; font-size: 12px; }
+
+    /* ── Cards ── */
+    .link-type-toggle {
+      display: flex;
+      gap: 4px;
+    }
+    .link-type-btn {
+      background: none;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #aaa;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .link-type-btn:hover { border-color: #aaa; color: #555; }
+    .link-type-btn.active { background: #d4d4d4; border-color: #d4d4d4; color: #1a1a1a; }
+    .card {
+      background: white;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .card-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 16px;
+    }
+
+    /* ── Phase nav tabs ── */
+    .progress-wrap { margin-bottom: 28px; }
+    .phase-nav {
+      display: flex;
+      gap: 3px;
+      background: #efefed;
+      border-radius: 9px;
+      padding: 3px;
+    }
+    .phase-tab {
+      flex: 1;
+      padding: 8px 10px;
+      border: none;
+      background: none;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #aaa;
+      text-align: center;
+      font-family: inherit;
+      cursor: default;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .phase-tab.active {
+      background: white;
+      color: #1a1a1a;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .phase-tab.done {
+      color: #777;
+      cursor: pointer;
+    }
+    .phase-tab.done:hover {
+      background: rgba(255,255,255,0.7);
+      color: #1a1a1a;
+    }
+
+    /* ── Mode cards ── */
+    .home-layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 48px;
+      max-width: 1100px;
+      margin: 48px auto;
+      padding: 0 40px;
+      align-items: start;
+    }
+    .home-left { min-width: 0; }
+    .home-right {
+      min-width: 0;
+      background: #f7f7f7;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .qa-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 40px;
+      align-items: start;
+    }
+    .qa-left { min-width: 0; }
+    .qa-right {
+      background: #f7f7f7;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 20px;
+      position: sticky;
+      top: 24px;
+    }
+    @media (max-width: 760px) {
+      .qa-layout { grid-template-columns: 1fr; padding: 0 20px; }
+    }
+    .qa-context-field { margin-bottom: 14px; }
+    .qa-context-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-bottom: 4px; }
+    .qa-context-value { font-size: 13px; color: #444; line-height: 1.5; }
+    @media (max-width: 760px) {
+      .home-layout { grid-template-columns: 1fr; padding: 0 20px; }
+    }
+
+    /* LHS — primary action */
+    .home-left h1 { font-size: 28px; font-weight: 700; margin: 0 0 6px; letter-spacing: -0.5px; }
+    .home-left .home-sub { font-size: 14px; color: #888; margin: 0 0 28px; }
+    .mode-cards { display: grid; gap: 12px; margin-top: 0; }
+    .mode-card {
+      background: white;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 22px 24px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: left;
+    }
+    .mode-card:hover { border-color: #1a1a1a; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-1px); }
+    .mode-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: #fff;
+      background: #1a1a1a;
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-bottom: 10px;
+    }
+    .mode-card h3 { font-size: 16px; font-weight: 600; margin: 0 0 5px; }
+    .mode-card p { font-size: 13px; color: #888; margin: 0; line-height: 1.5; }
+
+    /* RHS — queue/dataset */
+    .home-right-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #aaa;
+      margin: 0 0 14px;
+    }
+
+    /* ── Campaign list ── */
+    .campaign-item {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 7px;
+      cursor: pointer;
+      transition: all 0.12s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .campaign-item:hover { border-color: #aaa; background: #fafafa; }
+    .delete-campaign-btn, .card-delete-btn {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: color 0.1s;
+      flex-shrink: 0;
+    }
+    .delete-campaign-btn:hover, .card-delete-btn:hover { color: #dc2626; }
+    .campaign-name { font-size: 13px; font-weight: 500; }
+    .campaign-meta { font-size: 11px; color: #bbb; margin-top: 2px; }
+    .phase-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      flex-shrink: 0;
+    }
+    .badge-1 { background: #fef3c7; color: #92400e; }
+    .badge-2 { background: #dbeafe; color: #1e40af; }
+    .badge-3 { background: #ede9fe; color: #5b21b6; }
+    .badge-4 { background: #d1fae5; color: #065f46; }
+
+    /* ── Candidate cards ── */
+    .candidate-card {
+      background: white;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      transition: border-color 0.15s;
+    }
+    .candidate-card.selected { border-color: #1a1a1a; }
+    .candidate-card.already-processed { background: #f7f7f7; opacity: 0.7; }
+    .candidate-card.already-processed .cand-name { color: #888; }
+    .already-processed-tag {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #aaa;
+      background: #ebebeb;
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .cand-check {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .cand-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .cand-title { font-size: 13px; color: #666; margin-bottom: 5px; }
+    .cand-why { font-size: 13px; color: #444; margin-bottom: 3px; }
+    .cand-signal { font-size: 12px; color: #999; font-style: italic; }
+    a.link { font-size: 12px; color: #2563eb; text-decoration: none; }
+    a.link:hover { text-decoration: underline; }
+
+    /* ── Query blocks ── */
+    .query-block {
+      background: #f4f4f4;
+      border-radius: 6px;
+      padding: 9px 13px;
+      font-size: 12px;
+      font-family: monospace;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    /* ── Profile sections ── */
+    .profile-section {
+      background: white;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .profile-section-processed {
+      background: #f7f7f7;
+      border-color: #e0e0e0;
+      opacity: 0.7;
+    }
+    .profile-section-header {
+      padding: 13px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: #fafafa;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .profile-section-header:hover { background: #f2f2f2; }
+    .profile-section-body { padding: 16px 18px; }
+
+    /* ── Brief cards ── */
+    .brief-card {
+      background: white;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      transition: opacity 0.2s;
+    }
+    .brief-card.skipped { opacity: 0.45; }
+    .brief-name { font-size: 16px; font-weight: 600; }
+    .brief-title-text { font-size: 13px; color: #777; margin-top: 2px; margin-bottom: 12px; }
+    .score-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      background: #f3f4f6;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .brief-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+    .hook-row {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .brief-key {
+      font-weight: 600;
+      color: #888;
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+    .brief-val { color: #333; line-height: 1.55; }
+    .skip-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #888;
+      cursor: pointer;
+      user-select: none;
+    }
+    .skip-toggle input { width: 13px; height: 13px; cursor: pointer; margin: 0; }
+
+    /* ── Message cards ── */
+    .message-card {
+      background: white;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+    .msg-name { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+    .msg-links { font-size: 12px; color: #aaa; margin-bottom: 12px; }
+    .msg-text {
+      font-size: 13px;
+      line-height: 1.75;
+      white-space: pre-wrap;
+      color: #333;
+      background: #f9f9f9;
+      border-radius: 7px;
+      padding: 14px;
+      border: 1px solid #eee;
+      outline: none;
+    }
+    .msg-text[contenteditable="true"] {
+      border-color: #1a1a1a;
+      background: white;
+    }
+    .msg-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .revise-row {
+      display: none;
+      gap: 8px;
+      margin-top: 10px;
+      align-items: center;
+    }
+    .revise-row input { flex: 1; margin: 0; }
+
+    /* ── Loading ── */
+    .loading {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      color: #777;
+      font-size: 13px;
+      padding: 14px 0;
+    }
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid #ddd;
+      border-top-color: #1a1a1a;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Error ── */
+    .error-msg {
+      display: none;
+      color: #dc2626;
+      font-size: 13px;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #fef2f2;
+      border-radius: 6px;
+      border: 1px solid #fecaca;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 52px 24px;
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1a1a1a;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      z-index: 9999;
+      animation: fadeUp 0.2s ease;
+      pointer-events: none;
+    }
+    @keyframes fadeUp {
+      from { transform: translateY(8px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ── Utilities ── */
+    .mt-4 { margin-top: 4px; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-32 { margin-top: 32px; }
+    .mb-8 { margin-bottom: 8px; }
+    .mb-16 { margin-bottom: 16px; }
+    .flex { display: flex; }
+    .gap-8 { gap: 8px; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .flex-wrap { flex-wrap: wrap; }
+    .divider { border: none; border-top: 1.5px solid #f0f0f0; margin: 24px 0; }
+    .back-btn { margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div class="header-left">
+    <span class="header-logo" onclick="S.apiKey ? showScreen('home') : null" style="cursor:pointer;">Cartier</span>
+    <span class="header-sub">Expert Outreach</span>
+  </div>
+  <div class="header-right">
+    <span class="header-campaign" id="header-campaign-label"></span>
+    <button class="header-btn" onclick="changeKey()">Change API key</button>
+  </div>
+</header>
+
+<!-- ══ SCREEN: API KEY ══ -->
+<div id="screen-key" class="screen active">
+  <div class="container container-sm">
+    <div style="margin: 0 0 28px;">
+      <h1>Expert Outreach</h1>
+      <p class="subtext" style="margin-bottom:0;">Enter your API key to start. It's held in memory only and never saved — you'll need to re-enter it each session.</p>
+    </div>
+    <label>AI Provider</label>
+    <select id="key-provider" onchange="onProviderChange()">
+      <option value="anthropic">Anthropic (Claude)</option>
+      <option value="openai">OpenAI (GPT)</option>
+      <option value="deepseek">DeepSeek</option>
+      <option value="qwen">Qwen (Alibaba)</option>
+    </select>
+    <label id="key-label">API Key</label>
+    <input type="password" id="key-input" placeholder="sk-ant-..." />
+    <p class="hint" id="key-hint">Web search is supported — AI will find candidates and research experts automatically.</p>
+    <div style="margin-top: 20px;">
+      <button class="btn btn-primary" onclick="submitKey()">Continue →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: HOME ══ -->
+<div id="screen-home" class="screen">
+  <div class="home-layout">
+    <div class="home-left">
+      <h1>Start a campaign</h1>
+      <p class="home-sub">How do you want to begin?</p>
+      <div class="mode-cards">
+        <div class="mode-card" onclick="pickMode('A')">
+          <div class="mode-tag">A</div>
+          <h3>Find me experts on a topic</h3>
+          <p>AI generates search queries and surfaces candidates for you to pick from.</p>
+        </div>
+        <div class="mode-card" onclick="pickMode('C')">
+          <div class="mode-tag">B</div>
+          <h3>Add people to an existing campaign</h3>
+          <p>Select a running campaign and add new people to it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="home-right">
+      <div class="home-right-title">Past campaigns</div>
+      <div id="home-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: SETUP ══ -->
+<div id="screen-setup" class="screen">
+  <div class="container container-sm">
+    <button class="btn btn-ghost back-btn" onclick="showScreen('home')">← Back</button>
+    <h1>Campaign setup</h1>
+    <p class="subtext">These three answers shape every search query and outreach message.</p>
+    <label>Topic <span style="color:#ccc;font-weight:400;text-transform:none;letter-spacing:0;">(becomes the campaign name)</span></label>
+    <input type="text" id="setup-topic" placeholder="e.g. GEO / AI-driven discovery" />
+    <label>Expert type</label>
+    <textarea id="setup-expert" placeholder="e.g. practitioners who've shipped AI search tools, conference speakers on GEO/AEO, founders in AI discovery space"></textarea>
+    <label>Outreach goal</label>
+    <textarea id="setup-goal" placeholder="e.g. understand how practitioners are measuring GEO impact and what pitfalls they've encountered"></textarea>
+    <div style="margin-top: 20px;">
+      <button class="btn btn-primary" onclick="createCampaign()">Create campaign →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: DISCOVERY ══ -->
+<div id="screen-discovery" class="screen">
+  <div class="container">
+    <div class="progress-wrap" id="disc-progress"></div>
+    <h2 id="disc-heading">Candidate Discovery</h2>
+    <p class="subtext" id="disc-subtext">AI will generate search queries and find relevant experts for your campaign.</p>
+
+    <div id="disc-start">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-primary" id="disc-search-btn" onclick="runDiscovery()">Search for experts →</button>
+        <button class="btn btn-ghost" id="disc-manual-btn" onclick="toggleManualAdd()">+ Add experts manually</button>
+      </div>
+    </div>
+
+    <div id="disc-manual-form" class="card" style="display:none; margin-top:16px;">
+      <h3 class="mb-8">Add a candidate</h3>
+      <label>Name</label>
+      <input type="text" id="man-name" placeholder="Full name" />
+      <label>Title &amp; Company</label>
+      <input type="text" id="man-title" placeholder="e.g. Head of AI, Acme Corp" />
+      <div style="display:flex;align-items:center;gap:8px;margin-top:4px;margin-bottom:6px;">
+        <label style="margin:0;">Link</label>
+        <div class="link-type-toggle" id="man-link-toggle">
+          <button class="link-type-btn active" onclick="setLinkType('linkedin', this)">LinkedIn</button>
+          <button class="link-type-btn" onclick="setLinkType('company', this)">Company</button>
+          <button class="link-type-btn" onclick="setLinkType('other', this)">Other</button>
+        </div>
+      </div>
+      <input type="text" id="man-linkedin" placeholder="https://linkedin.com/in/..." />
+      <label>Why relevant</label>
+      <input type="text" id="man-why" placeholder="1–2 sentences" />
+      <div style="margin-top:10px;display:flex;gap:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="addManualCandidate()">Add candidate</button>
+        <button class="btn btn-ghost btn-sm" onclick="toggleManualAdd()">Cancel</button>
+      </div>
+    </div>
+
+    <div class="loading" id="disc-loading"><div class="spinner"></div><span id="disc-loading-text">Working...</span></div>
+    <div class="error-msg" id="disc-error"></div>
+
+    <div id="disc-queries-section" style="display:none;">
+      <h3 class="mt-24 mb-8">Search queries</h3>
+      <div id="disc-queries"></div>
+      <div id="disc-no-search-note" style="display:none; margin-top:16px;">
+        <div class="card">
+          <p style="font-size:13px;">Your provider doesn't support built-in web search. Copy the queries above and run them manually, then use <strong>Add experts manually</strong> above to add candidates.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="disc-results-section" style="display:none; margin-top:28px;">
+      <div class="section-header">
+        <h3>Candidates</h3>
+        <button class="btn btn-ghost btn-sm" onclick="toggleManualAdd()">+ Add manually</button>
+      </div>
+      <div id="disc-candidates"></div>
+      <div style="margin-top:20px;">
+        <button class="btn btn-primary" id="disc-confirm-btn" onclick="confirmCandidates()">Continue with selected →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: PROFILES ══ -->
+<div id="screen-profiles" class="screen">
+  <div class="container">
+    <div class="progress-wrap" id="prof-progress"></div>
+    <div class="section-header">
+      <div>
+        <h2>LinkedIn Profiles</h2>
+        <p class="subtext" style="margin-bottom:0;">Paste each person's full LinkedIn profile text below. Add anyone extra at the bottom.</p>
+      </div>
+    </div>
+    <div id="prof-list"></div>
+    <button class="btn btn-secondary btn-sm mb-16" id="prof-add-btn" onclick="addProfileSection()">+ Add another person</button>
+    <div>
+      <button class="btn btn-primary" id="prof-generate-btn" onclick="goToBriefs()">Generate briefs →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: BRIEFS ══ -->
+<div id="screen-briefs" class="screen">
+  <div class="container">
+    <div class="progress-wrap" id="briefs-progress"></div>
+    <div class="section-header">
+      <div>
+        <h2>Briefs</h2>
+        <p class="subtext" style="margin-bottom:0;">Review each person. Toggle off anyone you want to skip before drafting messages.</p>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="briefs-export-btn" style="display:none;" onclick="exportBriefs()">Export briefs.md</button>
+    </div>
+    <div id="briefs-list"></div>
+    <div class="loading" id="briefs-loading"><div class="spinner"></div><span id="briefs-loading-text">Generating briefs...</span></div>
+    <div class="error-msg" id="briefs-error"></div>
+    <div id="briefs-cta" style="display:none; margin-top:20px;">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="goToMessages()">Draft messages →</button>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:12px;color:#888;">Length:</span>
+          <div class="link-type-toggle" id="msg-length-toggle">
+            <button class="link-type-btn active" onclick="setMsgLength('long', this)">Long</button>
+            <button class="link-type-btn" onclick="setMsgLength('short', this)">Short &lt;200 chars</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: MESSAGES ══ -->
+<div id="screen-messages" class="screen">
+  <div class="container">
+    <div class="progress-wrap" id="msgs-progress"></div>
+    <div class="section-header">
+      <div>
+        <h2>Outreach Messages</h2>
+        <p class="subtext" style="margin-bottom:0;">Copy, edit inline, revise with a note, or regenerate any message.</p>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="exportMessages()">Export outreach.md</button>
+    </div>
+    <div id="msgs-list"></div>
+    <div class="loading" id="msgs-loading"><div class="spinner"></div><span id="msgs-loading-text">Drafting messages...</span></div>
+    <div class="error-msg" id="msgs-error"></div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: QUICK ADD ══ -->
+<div id="screen-quickadd" class="screen">
+  <div class="qa-layout">
+    <div class="qa-left">
+      <button class="btn btn-ghost back-btn" onclick="showScreen('home')">← Back</button>
+      <h2>Quick Add</h2>
+      <p class="subtext">Add new people to an existing campaign.</p>
+      <label>Select campaign</label>
+      <select id="qa-campaign-select" onchange="updateQAContext()"></select>
+      <div id="qa-people"></div>
+      <button class="btn btn-secondary btn-sm mb-16" onclick="addQAPerson()">+ Add another person</button>
+      <div class="loading" id="qa-loading"><div class="spinner"></div><span>Processing...</span></div>
+      <div class="error-msg" id="qa-error"></div>
+      <div id="qa-results"></div>
+      <div style="margin-top: 8px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="runQuickAdd()">Generate &amp; add →</button>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:12px;color:#888;">Length:</span>
+          <div class="link-type-toggle" id="msg-length-toggle">
+            <button class="link-type-btn active" onclick="setMsgLength('long', this)">Long</button>
+            <button class="link-type-btn" onclick="setMsgLength('short', this)">Short &lt;200 chars</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="qa-right">
+      <div class="home-right-title">Campaign context</div>
+      <div id="qa-campaign-context" style="color:#888;font-size:13px;">Select a campaign to see its context.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────
+// CONSTANTS
+// ─────────────────────────────────────────
+
+const PROVIDERS = {
+  anthropic: {
+    label: 'Anthropic (Claude)',
+    endpoint: 'https://api.anthropic.com/v1/messages',
+    model: 'claude-sonnet-4-6',
+    format: 'anthropic',
+    webSearch: true,
+    keyPlaceholder: 'sk-ant-...',
+    keyLabel: 'Anthropic API Key',
+    hint: 'Web search supported — AI will find candidates and research experts automatically.'
+  },
+  openai: {
+    label: 'OpenAI (GPT)',
+    endpoint: 'https://api.openai.com/v1/chat/completions',
+    model: 'gpt-4o',
+    format: 'openai',
+    webSearch: false,
+    keyPlaceholder: 'sk-...',
+    keyLabel: 'OpenAI API Key',
+    hint: 'No built-in web search — AI will generate queries for you to run manually.'
+  },
+  deepseek: {
+    label: 'DeepSeek',
+    endpoint: 'https://api.deepseek.com/v1/chat/completions',
+    model: 'deepseek-chat',
+    format: 'openai',
+    webSearch: false,
+    keyPlaceholder: 'sk-...',
+    keyLabel: 'DeepSeek API Key',
+    hint: 'No built-in web search — AI will generate queries for you to run manually.'
+  },
+  qwen: {
+    label: 'Qwen (Alibaba)',
+    endpoint: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions',
+    model: 'qwen-plus',
+    format: 'openai',
+    webSearch: false,
+    keyPlaceholder: 'sk-...',
+    keyLabel: 'DashScope API Key',
+    hint: 'No built-in web search — AI will generate queries for you to run manually.'
+  }
+};
+
+const PHASE_LABELS = ['Discovery', 'Profiles', 'Briefs', 'Messages'];
+const PHASE_BADGE_LABELS = { 1: 'Discovery', 2: 'Profiles', 3: 'Briefs ready', 4: 'Messages ready' };
+const PHASE_BADGE_CLASS = { 1: 'badge-1', 2: 'badge-2', 3: 'badge-3', 4: 'badge-4' };
+
+const OUTREACH_EXAMPLES_LONG = `1. Hello Myriam,
+
+I saw your Semrush session "AI Search Is Reshaping How Brands Are Found – Are You Ready?" and really appreciated how practically you frame AI-driven discovery and brand visibility.
+
+For context, I work in digital innovation at Cartier APAC. We're building our understanding of GEO/AEO and AI-assisted discovery (including measurement and the common pitfalls teams run into when they try to operationalize this).
+
+Would you be open to a quick 20-min call with our internal team to hear your perspective on this new transformation? If there's alignment, we'd love to explore a wider team session with our VP and team leads!
+
+Thanks,
+Nitya Negi
+Digital Innovation
+Cartier-HK APAC
+
+
+2. Hi Rui,
+
+I read your recent piece on China's humanoid robotics and I think your observation that "China's advantage in robotics is not any single robot - it is the closed loop around the robot" was quite unique!
+
+That kind of perspective on emerging tech-topics is exactly what we're trying to build awareness of internally at Cartier.
+
+For context, I work in Digital Innovation and AI at Cartier APAC, and we're building our team's understanding of how leading tech writers and experts track, process, and form opinions on emerging technology.
+
+My team is constantly seeking field experts as independent voices to learn more about these topics.
+
+Would you be open to a quick 20-min call? If there's alignment, we'd love to explore a wider session with our VP and team leads.
+
+Thanks,
+Nitya Negi
+Digital Innovation & AI
+Cartier-HK APAC
+
+
+3. Hi Jiangong,
+
+I read your piece "After DeepSeek-V4: The East-West Divide in Open-Source AI Models" and I think it frames the gap between Eastern and Western AI development in a unique way.
+
+That kind of perspective on emerging tech-topics is exactly what we're trying to build awareness of internally at Cartier.
+
+For context, I work in Digital Innovation and AI at Cartier APAC, and we're building our team's understanding of how leading tech writers and experts track, process, and form opinions on emerging technology.
+
+My team is constantly seeking field experts as independent voices to learn more about these topics.
+
+Would you be open to a quick 20-min call? If there's alignment, we'd love to explore a wider session with our VP and team leads.
+
+Thanks,
+Nitya Negi
+Digital Innovation & AI
+Cartier-HK APAC`;
+
+const OUTREACH_EXAMPLES_SHORT = `1. Hi Yalcin, I found you via your talk with Beatrix on LWM. My Digital Innovation team at Cartier wants to build on LLM → LWM transformations for autonomous tech. Would you be open to a quick chat?
+
+2. Hi Daniel, I found you via your "Travel x AI" piece and loved your take on LLMs going vertical. I am looking to upskill my team at Cartier on SEO/GEO, would you be open to a quick chat?
+
+3. Hi Kevin, I found you via your podcast on churn.fm. I am looking to upskill my team at Cartier on SEO/GEO, would you be open to a quick chat?
+
+4. Hi Rachel, just learned about Tribe and Nvidia partnership! My team at Cartier has a focus on innovation and GenAI. We are currently scouting startups. Would you have time next week to discuss this?`;
+
+// ─────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────
+
+const S = {
+  apiKey: null,
+  provider: 'anthropic',
+  campaign: null,
+  campaigns: {},
+  isRevisiting: false  // unused — kept for future
+};
+
+// ─────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────
+
+window.addEventListener('load', () => {
+  S.campaigns = JSON.parse(localStorage.getItem('campaigns') || '{}');
+  S.provider = localStorage.getItem('preferredProvider') || 'anthropic';
+  const sel = document.getElementById('key-provider');
+  sel.value = S.provider;
+  onProviderChange();
+  const savedKey = localStorage.getItem('apiKey');
+  if (savedKey) {
+    S.apiKey = savedKey;
+    showScreen('home');
+  } else {
+    showScreen('key');
+  }
+});
+
+// ─────────────────────────────────────────
+// SCREEN NAVIGATION
+// ─────────────────────────────────────────
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'home') renderHome();
+  if (id === 'quickadd') renderQuickAdd();
+}
+
+// ─────────────────────────────────────────
+// API KEY SCREEN
+// ─────────────────────────────────────────
+
+function onProviderChange() {
+  const prov = document.getElementById('key-provider').value;
+  const cfg = PROVIDERS[prov];
+  document.getElementById('key-label').textContent = cfg.keyLabel;
+  document.getElementById('key-input').placeholder = cfg.keyPlaceholder;
+  document.getElementById('key-hint').textContent = cfg.hint;
+}
+
+function submitKey() {
+  const key = document.getElementById('key-input').value.trim();
+  if (!key) { alert('Please enter your API key.'); return; }
+  const prov = document.getElementById('key-provider').value;
+  S.apiKey = key;
+  S.provider = prov;
+  localStorage.setItem('apiKey', key);
+  localStorage.setItem('preferredProvider', prov);
+  document.getElementById('key-input').value = '';
+  showScreen('home');
+}
+
+function changeKey() {
+  localStorage.removeItem('apiKey');
+  S.apiKey = null;
+  document.getElementById('key-input').value = '';
+  showScreen('key');
+}
+
+// ─────────────────────────────────────────
+// HOME SCREEN
+// ─────────────────────────────────────────
+
+function renderHome() {
+  document.getElementById('header-campaign-label').textContent = '';
+  const list = document.getElementById('home-list');
+  const campaigns = Object.values(S.campaigns).sort((a, b) => b.createdAt - a.createdAt);
+  if (campaigns.length === 0) {
+    list.innerHTML = '<div class="empty-state">No campaigns yet. Start one above.</div>';
+    return;
+  }
+  list.innerHTML = campaigns.map(c => `
+    <div class="campaign-item" onclick="openCampaign('${c.id}')">
+      <div style="min-width:0;flex:1;">
+        <div class="campaign-name">${esc(c.topic)}</div>
+        <div class="campaign-meta">Mode ${esc(c.mode)} &middot; ${Object.keys(c.messages || {}).length} messages</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <span class="phase-badge ${PHASE_BADGE_CLASS[c.phase] || 'badge-1'}">${PHASE_BADGE_LABELS[c.phase] || 'In progress'}</span>
+        <button class="delete-campaign-btn" onclick="event.stopPropagation(); deleteCampaign('${c.id}')" title="Delete campaign">×</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteCampaign(id) {
+  if (!confirm(`Delete "${S.campaigns[id]?.topic}"? This cannot be undone.`)) return;
+  delete S.campaigns[id];
+  save();
+  renderHome();
+}
+
+function openCampaign(id) {
+  S.campaign = S.campaigns[id];
+  S.isRevisiting = true;
+  const p = S.campaign.phase;
+  if (p <= 1) { renderDiscovery(); showScreen('discovery'); }
+  else if (p <= 2) { renderProfiles(); showScreen('profiles'); }
+  else if (p === 3) { renderBriefs(false); showScreen('briefs'); }
+  else { renderMessages(false); showScreen('messages'); }
+}
+
+// ─────────────────────────────────────────
+// MODE & SETUP
+// ─────────────────────────────────────────
+
+function pickMode(mode) {
+  if (mode === 'C') { showScreen('quickadd'); return; }
+  S._mode = mode;
+  document.getElementById('setup-topic').value = '';
+  document.getElementById('setup-expert').value = '';
+  document.getElementById('setup-goal').value = '';
+  showScreen('setup');
+}
+
+function createCampaign() {
+  const topic = document.getElementById('setup-topic').value.trim();
+  const expertType = document.getElementById('setup-expert').value.trim();
+  const goal = document.getElementById('setup-goal').value.trim();
+  if (!topic || !expertType || !goal) { alert('Please fill in all three fields.'); return; }
+
+  const slug = topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const id = `${slug}-${date}`;
+
+  const campaign = {
+    id, topic, expertType, goal,
+    mode: S._mode,
+    phase: 1,
+    createdAt: Date.now(),
+    candidates: [],
+    profiles: {},
+    profileSkips: {},
+    briefs: {},
+    messages: {}
+  };
+  S.campaign = campaign;
+  S.campaigns[id] = campaign;
+  S.isRevisiting = false;
+  save();
+
+  renderDiscovery(); showScreen('discovery');
+}
+
+// ─────────────────────────────────────────
+// PHASE NAV
+// ─────────────────────────────────────────
+
+function renderProgress(containerId, currentPhase, mode) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const c = S.campaign;
+  const steps = [1, 2, 3, 4];
+  const labels = PHASE_LABELS;
+
+  el.innerHTML = `<div class="phase-nav">` + steps.map((p, i) => {
+    const isActive = p === currentPhase;
+    const isDone = c.phase >= p && !isActive;
+    const cls = isActive ? 'active' : isDone ? 'done' : '';
+    const click = isDone ? `onclick="navToPhase(${p})"` : '';
+    return `<button class="phase-tab ${cls}" ${click}>${labels[i]}</button>`;
+  }).join('') + `</div>`;
+}
+
+function navToPhase(phase) {
+  if (phase === 1) { renderDiscovery(); showScreen('discovery'); }
+  else if (phase === 2) { renderProfiles(); showScreen('profiles'); }
+  else if (phase === 3) { renderBriefs(false); showScreen('briefs'); }
+  else if (phase === 4) { renderMessages(false); showScreen('messages'); }
+}
+
+// ─────────────────────────────────────────
+// DISCOVERY SCREEN
+// ─────────────────────────────────────────
+
+function renderDiscovery() {
+  const c = S.campaign;
+  renderProgress('disc-progress', 1, c.mode);
+  document.getElementById('header-campaign-label').textContent = c.topic;
+  document.getElementById('disc-loading').style.display = 'none';
+  document.getElementById('disc-error').style.display = 'none';
+  document.getElementById('disc-queries-section').style.display = 'none';
+
+  const hasCandidates = c.candidates && c.candidates.length > 0;
+
+  if (hasCandidates) {
+    document.getElementById('disc-start').style.display = 'none';
+    document.getElementById('disc-results-section').style.display = 'block';
+    renderCandidates();
+  } else {
+    document.getElementById('disc-start').style.display = 'block';
+    document.getElementById('disc-results-section').style.display = 'none';
+  }
+}
+
+
+async function runDiscovery() {
+  const c = S.campaign;
+  const hadCandidates = c.candidates && c.candidates.length > 0;
+  document.getElementById('disc-start').style.display = 'none';
+  if (!hadCandidates) document.getElementById('disc-results-section').style.display = 'none';
+  showLoading('disc-loading', 'Generating search queries...');
+  hideError('disc-error');
+
+  try {
+    const queriesRaw = await callAI(
+      'You generate targeted search queries for expert outreach. Return only valid JSON.',
+      `Generate 6-10 search queries to find the most relevant experts for this campaign. These queries will be run on any search platform (Google, Bing, etc.) — they are not limited to LinkedIn. Think about where practitioners in this space actually publish and get discovered.
+
+Topic: ${c.topic}
+Looking for: ${c.expertType}
+Goal: ${c.goal}
+
+Mix query types, for example:
+- site:linkedin.com/in for LinkedIn profiles
+- "[topic] podcast guest" or "[topic] speaker" for people who've spoken publicly
+- "[topic] newsletter author" or "[topic] substack" for independent writers
+- "[topic] case study" or "how we built [topic thing]" for practitioners who've shipped work
+- "[company type] [role] blog" for people writing in specific roles
+
+Return ONLY a JSON array of search query strings.`
+    );
+
+    const queries = parseJSON(queriesRaw);
+    if (!queries || !Array.isArray(queries)) throw new Error('Could not parse queries. Raw response: ' + queriesRaw.slice(0, 200));
+
+    c.discoveryQueries = queries;
+    save();
+
+    document.getElementById('disc-queries').innerHTML = queries.map(q =>
+      `<div class="query-block">${esc(q)}</div>`
+    ).join('');
+    document.getElementById('disc-queries-section').style.display = 'block';
+
+    const prov = PROVIDERS[S.provider];
+    if (prov.webSearch) {
+      showLoading('disc-loading', 'Searching for candidates...');
+      const candsRaw = await callAI(
+        'You find experts for cold outreach research. Return only valid JSON.',
+        `Search the web using these queries and return up to 8 relevant experts for this campaign.
+
+Queries:
+${queries.map(q => '- ' + q).join('\n')}
+
+Campaign: ${c.topic}
+Looking for: ${c.expertType}
+Goal: ${c.goal}
+
+Selection rules — follow these strictly:
+- Prioritise practitioners who have actually shipped, written about, or spoken on the topic — not just people with the right job title
+- If a LinkedIn URL is not available, leave the field as an empty string rather than guessing
+- The signal is a one-sentence summary of why this person is relevant — their background, experience, or what they're known for. It is used as context only, not as a message hook.
+
+Return ONLY a JSON array:
+[{"name":"Full Name","title":"Role, Company","linkedin":"https://linkedin.com/in/... or empty string","signal":"one sentence on why they are relevant — their background, experience, or what they are known for in this space"}]`,
+        { useWebSearch: true }
+      );
+
+      const cands = parseJSON(candsRaw);
+      if (!cands || !Array.isArray(cands)) throw new Error('Could not parse candidates.');
+      const existingNames = new Set(c.candidates.map(x => x.name.toLowerCase()));
+      const newCands = cands.filter(x => !existingNames.has(x.name.toLowerCase())).map(x => ({ ...x, selected: true }));
+      c.candidates = [...c.candidates, ...newCands];
+      save();
+      renderCandidates();
+    } else {
+      document.getElementById('disc-no-search-note').style.display = 'block';
+      document.getElementById('disc-results-section').style.display = 'block';
+    }
+
+    hideLoading('disc-loading');
+
+  } catch (err) {
+    hideLoading('disc-loading');
+    showError('disc-error', err.message);
+    if (c.candidates && c.candidates.length > 0) {
+      renderCandidates();
+    } else {
+      document.getElementById('disc-start').style.display = 'block';
+    }
+  }
+}
+
+
+function renderCandidates() {
+  const c = S.campaign;
+  const el = document.getElementById('disc-candidates');
+  el.innerHTML = c.candidates.map((cand, i) => {
+    const processed = !!(c.briefs && c.briefs[cand.name]);
+    return `
+    <div class="candidate-card ${cand.selected ? 'selected' : ''} ${processed ? 'already-processed' : ''}" id="cand-${i}">
+      <input class="cand-check" type="checkbox" ${cand.selected ? 'checked' : ''} onchange="toggleCand(${i}, this.checked)" />
+      <div style="flex:1;">
+        <div class="cand-name">${esc(cand.name)}${processed ? '<span class="already-processed-tag">analysed</span>' : ''}</div>
+        <div class="cand-title">${esc(cand.title || '')}</div>
+        <div class="cand-signal">${esc(cand.signal || '')}</div>
+        ${cand.linkUrl && cand.linkType !== 'linkedin' ? `<a class="link mt-4" href="${esc(cand.linkUrl)}" target="_blank">${cand.linkType === 'company' ? 'Company website →' : 'View source →'}</a>` : cand.linkedin ? `<a class="link mt-4" href="${esc(cand.linkedin)}" target="_blank">View on LinkedIn →</a>` : ''}
+      </div>
+      <button class="card-delete-btn" onclick="deleteCandidate(${esc(JSON.stringify(cand.name))}); renderCandidates();" title="Remove">×</button>
+    </div>`;
+  }).join('');
+  document.getElementById('disc-results-section').style.display = 'block';
+}
+
+function deleteCandidate(name) {
+  const c = S.campaign;
+  c.candidates = c.candidates.filter(x => x.name !== name);
+  delete c.profiles[name];
+  delete c.briefs[name];
+  delete c.messages[name];
+  save();
+}
+
+function toggleCand(i, checked) {
+  S.campaign.candidates[i].selected = checked;
+  document.getElementById('cand-' + i)?.classList.toggle('selected', checked);
+  save();
+}
+
+const LINK_PLACEHOLDERS = {
+  linkedin: 'https://linkedin.com/in/...',
+  company:  'https://company.com',
+  other:    'YouTube, podcast, blog, newsletter URL...'
+};
+
+let manLinkType = 'linkedin';
+
+function setLinkType(type, btn) {
+  manLinkType = type;
+  document.querySelectorAll('#man-link-toggle .link-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('man-linkedin').placeholder = LINK_PLACEHOLDERS[type];
+}
+
+function toggleManualAdd() {
+  const form = document.getElementById('disc-manual-form');
+  const isOpen = form.style.display !== 'none';
+  form.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) {
+    document.getElementById('disc-start').style.display = 'none';
+    document.getElementById('man-name').focus();
+  } else {
+    const hasCandidates = S.campaign.candidates && S.campaign.candidates.length > 0;
+    if (!hasCandidates) document.getElementById('disc-start').style.display = 'block';
+  }
+}
+
+function addManualCandidate() {
+  const name = document.getElementById('man-name').value.trim();
+  if (!name) { alert('Name is required.'); return; }
+  const url = document.getElementById('man-linkedin').value.trim();
+  S.campaign.candidates.push({
+    name,
+    title: document.getElementById('man-title').value.trim(),
+    linkedin: manLinkType === 'linkedin' ? url : '',
+    linkUrl: url,
+    linkType: manLinkType,
+    signal: document.getElementById('man-why').value.trim(),
+    selected: true
+  });
+  save();
+  document.getElementById('disc-results-section').style.display = 'block';
+  renderCandidates();
+  ['man-name', 'man-title', 'man-linkedin', 'man-why'].forEach(id => { document.getElementById(id).value = ''; });
+  setLinkType('linkedin', document.querySelector('#man-link-toggle .link-type-btn'));
+  document.getElementById('man-name').focus();
+  toast('Candidate added');
+}
+
+function confirmCandidates() {
+  const c = S.campaign;
+  const selected = c.candidates.filter(x => x.selected);
+  if (selected.length === 0) { alert('Select at least one candidate to continue.'); return; }
+  const newOnly = selected.filter(x => !(c.briefs && c.briefs[x.name]));
+  if (newOnly.length === 0) {
+    // All selected are already analysed — go straight to briefs
+    S.campaign.phase = Math.max(S.campaign.phase, 3);
+    save();
+    renderBriefs(false);
+    showScreen('briefs');
+    return;
+  }
+  S.campaign.phase = Math.max(S.campaign.phase, 2);
+  save();
+  renderProfiles();
+  showScreen('profiles');
+}
+
+// ─────────────────────────────────────────
+// PROFILES SCREEN
+// ─────────────────────────────────────────
+
+let profCount = 0;
+
+function renderProfiles() {
+  const c = S.campaign;
+  renderProgress('prof-progress', 2, c.mode);
+  document.getElementById('header-campaign-label').textContent = c.topic;
+  profCount = 0;
+  const list = document.getElementById('prof-list');
+  list.innerHTML = '';
+
+  document.getElementById('prof-add-btn').style.display = '';
+  document.getElementById('prof-generate-btn').style.display = '';
+
+  const selected = c.candidates.filter(x => x.selected);
+
+  if (selected.length > 0) {
+    selected.forEach(cand => {
+      const alreadyProcessed = !!(c.briefs && c.briefs[cand.name]);
+      addProfileSection(cand.name, cand.linkedin, c.profiles[cand.name] || '', alreadyProcessed, cand.linkType, cand.linkUrl);
+    });
+  } else {
+    addProfileSection();
+  }
+
+  // Any extra profiles from manual additions not in candidates
+  Object.keys(c.profiles).forEach(name => {
+    if (!selected.find(x => x.name === name)) {
+      const alreadyProcessed = !!(c.briefs && c.briefs[name]);
+      addProfileSection(name, '', c.profiles[name], alreadyProcessed);
+    }
+  });
+}
+
+const PROFILE_TEXT_LABELS = {
+  linkedin: 'LinkedIn profile text',
+  company:  'Company profile text',
+  other:    'Blog / YouTube transcript / other text'
+};
+const PROFILE_TEXT_PLACEHOLDERS = {
+  linkedin: 'Paste the full LinkedIn profile text here...',
+  company:  'Paste the company About page, website copy, or any other relevant text here...',
+  other:    'Paste the blog post, YouTube transcript, newsletter, or any other relevant text here...'
+};
+
+function addProfileSection(name, linkedin, text, alreadyProcessed, linkType, linkUrl) {
+  profCount++;
+  const isPrepopulated = !!name;
+  const sectionId = 'prof-sec-' + profCount;
+  const div = document.createElement('div');
+  div.className = 'profile-section' + (alreadyProcessed ? ' profile-section-processed' : '');
+  div.id = sectionId;
+  if (name) div.dataset.fixedName = name;
+
+  const resolvedLinkType = linkType || 'linkedin';
+  const displayUrl = linkUrl || linkedin;
+  const linkLabel = resolvedLinkType === 'linkedin' ? 'View on LinkedIn →'
+                  : resolvedLinkType === 'company'  ? 'Company website →'
+                  : 'View source →';
+  const textLabel = PROFILE_TEXT_LABELS[resolvedLinkType] || PROFILE_TEXT_LABELS.linkedin;
+  const textPlaceholder = PROFILE_TEXT_PLACEHOLDERS[resolvedLinkType] || PROFILE_TEXT_PLACEHOLDERS.linkedin;
+
+  div.innerHTML = `
+    <div class="profile-section-header" onclick="toggleSection('${sectionId}')">
+      <span class="prof-header-name">${name ? esc(name) : `<span style="color:#bbb">Person ${profCount}</span>`}</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        ${alreadyProcessed ? '<span class="already-processed-tag">analysed</span>' : ''}
+        ${name ? `<label class="skip-toggle" style="margin:0;" onclick="event.stopPropagation();">
+          <input type="checkbox" ${(S.campaign.profileSkips || {})[name] ? 'checked' : ''} onchange="toggleProfileSkip(${esc(JSON.stringify(name))}, this.checked)" />
+          Skip
+        </label>` : ''}
+        <span style="color:#bbb; font-size:12px;">▾</span>
+        ${name ? `<button class="card-delete-btn" onclick="event.stopPropagation(); deleteCandidate(${esc(JSON.stringify(name))}); document.getElementById('${sectionId}').remove();" title="Remove">×</button>` : ''}
+      </div>
+    </div>
+    <div class="profile-section-body" ${alreadyProcessed ? 'style="display:none;"' : ''}>
+      ${!isPrepopulated ? `
+        <label>Name</label>
+        <input type="text" class="prof-name-input" placeholder="Full name"
+          oninput="updateSectionHeader('${sectionId}', this.value)" />
+      ` : `
+        ${displayUrl ? `<div style="font-size:12px;color:#aaa;margin-bottom:10px;"><a class="link" href="${esc(displayUrl)}" target="_blank">${linkLabel}</a></div>` : ''}
+      `}
+      <label>${textLabel}</label>
+      <textarea class="tall prof-textarea" placeholder="${textPlaceholder}">${esc(text || '')}</textarea>
+    </div>
+  `;
+  document.getElementById('prof-list').appendChild(div);
+}
+
+function toggleProfileSkip(name, skip) {
+  if (!S.campaign.profileSkips) S.campaign.profileSkips = {};
+  S.campaign.profileSkips[name] = skip;
+  save();
+}
+
+function toggleSection(id) {
+  const body = document.getElementById(id)?.querySelector('.profile-section-body');
+  if (body) body.style.display = body.style.display === 'none' ? '' : 'none';
+}
+
+function updateSectionHeader(sectionId, val) {
+  const el = document.getElementById(sectionId)?.querySelector('.prof-header-name');
+  if (el) el.textContent = val || 'Person';
+}
+
+function goToBriefs() {
+  const c = S.campaign;
+  document.querySelectorAll('.profile-section').forEach(sec => {
+    let name = sec.dataset.fixedName;
+    if (!name) {
+      name = sec.querySelector('.prof-name-input')?.value.trim();
+    }
+    const text = sec.querySelector('.prof-textarea')?.value.trim();
+    if (name && text) c.profiles[name] = text;
+  });
+
+  if (Object.keys(c.profiles).length === 0) {
+    alert('Please paste at least one LinkedIn profile before continuing.');
+    return;
+  }
+  c.phase = 3;
+  save();
+  renderBriefs(true);
+  showScreen('briefs');
+}
+
+// ─────────────────────────────────────────
+// BRIEFS SCREEN
+// ─────────────────────────────────────────
+
+function renderBriefs(generateNew) {
+  const c = S.campaign;
+  renderProgress('briefs-progress', 3, c.mode);
+  document.getElementById('header-campaign-label').textContent = c.topic;
+  document.getElementById('briefs-list').innerHTML = '';
+  document.getElementById('briefs-cta').style.display = 'none';
+  document.getElementById('briefs-export-btn').style.display = 'none';
+  hideError('briefs-error');
+
+  if (generateNew) {
+    generateAllBriefs();
+  } else {
+    const skips = c.profileSkips || {};
+    Object.keys(c.profiles).forEach(name => {
+      if (c.briefs[name]) {
+        const alreadyMessaged = !!(c.messages && c.messages[name]);
+        if (alreadyMessaged && !c.briefs[name].skip) { c.briefs[name].skip = true; save(); }
+        renderBriefCard(name, c.briefs[name]);
+      } else {
+        renderPendingBriefCard(name, skips[name]);
+      }
+    });
+    document.getElementById('briefs-cta').style.display = 'block';
+    document.getElementById('briefs-export-btn').style.display = 'inline-flex';
+  }
+}
+
+async function generateAllBriefs() {
+  const c = S.campaign;
+  const skips = c.profileSkips || {};
+  const names = Object.keys(c.profiles).filter(n => !skips[n]);
+  const prov = PROVIDERS[S.provider];
+
+  // Render existing briefs immediately without re-calling the API
+  names.filter(n => c.briefs[n]).forEach(n => {
+    const alreadyMessaged = !!(c.messages && c.messages[n]);
+    if (alreadyMessaged && !c.briefs[n].skip) { c.briefs[n].skip = true; save(); }
+    renderBriefCard(n, c.briefs[n]);
+  });
+
+  const toGenerate = names.filter(n => !c.briefs[n]);
+  if (toGenerate.length === 0) {
+    document.getElementById('briefs-cta').style.display = 'block';
+    document.getElementById('briefs-export-btn').style.display = 'inline-flex';
+    return;
+  }
+
+  showLoading('briefs-loading', `Generating brief 1 of ${toGenerate.length}...`);
+
+  for (let i = 0; i < toGenerate.length; i++) {
+    const name = toGenerate[i];
+    document.getElementById('briefs-loading-text').textContent = `Generating brief for ${name} (${i + 1}/${toGenerate.length})...`;
+    try {
+      const raw = await callAI(
+        'You research experts for Cartier Digital Innovation outreach. Return only valid JSON.',
+        `Generate a brief for this person.
+
+Name: ${name}
+Profile context:
+${c.profiles[name]}
+
+Campaign topic: ${c.topic}
+Looking for: ${c.expertType}
+Goal: ${c.goal}
+
+${prov.webSearch ? `Search the web for their personal website or blog (e.g. "${name} website" or "${name} blog").` : ''}
+
+Each bullet in whoTheyAre and whyRelevant must be a single short phrase or sentence — no long sentences, no paragraphs.
+
+Return ONLY this JSON object:
+{
+  "title": "current role and company",
+  "linkedin": "their LinkedIn URL from the profile context, or empty string",
+  "website": "their personal website URL, or empty string if not found",
+  "whoTheyAre": ["one short phrase or sentence", "one short phrase or sentence"],
+  "whyRelevant": ["one short phrase or sentence", "one short phrase or sentence"],
+  "score": 8
+}`,
+        { useWebSearch: prov.webSearch }
+      );
+
+      const brief = parseJSON(raw);
+      if (!brief || typeof brief !== 'object') throw new Error('Could not parse brief JSON.');
+
+      // Merge LinkedIn from candidates if not extracted
+      const cand = c.candidates.find(x => x.name === name);
+      if (cand && !brief.linkedin) brief.linkedin = cand.linkedin || '';
+
+      const alreadyMessaged = !!(c.messages && c.messages[name]);
+      c.briefs[name] = { ...brief, skip: alreadyMessaged };
+    } catch (err) {
+      const alreadyMessaged = !!(c.messages && c.messages[name]);
+      c.briefs[name] = { title: '', linkedin: '', website: '', whoTheyAre: '', whyRelevant: '', score: 0, skip: alreadyMessaged, _error: err.message };
+    }
+    save();
+    renderBriefCard(name, c.briefs[name]);
+  }
+
+  // Show any profile-skipped people as greyed pending cards so they remain visible
+  Object.keys(c.profiles).filter(n => skips[n]).forEach(n => {
+    if (!c.briefs[n]) renderPendingBriefCard(n, true);
+  });
+
+  hideLoading('briefs-loading');
+  document.getElementById('briefs-cta').style.display = 'block';
+  document.getElementById('briefs-export-btn').style.display = 'inline-flex';
+}
+
+function renderPendingBriefCard(name, isProfileSkipped) {
+  const domId = toId(name);
+  document.getElementById('brief-' + domId)?.remove();
+  const card = document.createElement('div');
+  card.className = 'brief-card skipped';
+  card.id = 'brief-' + domId;
+  card.innerHTML = `
+    <div class="card-row" style="margin-bottom:0;">
+      <div>
+        <div class="brief-name">${esc(name)}</div>
+        <div class="brief-title-text" style="color:#bbb;font-size:12px;margin-top:2px;">
+          ${isProfileSkipped ? 'Skipped in profiles — un-skip and regenerate to include' : 'Brief not yet generated'}
+        </div>
+      </div>
+      <button class="card-delete-btn" onclick="deleteCandidate(${esc(JSON.stringify(name))}); document.getElementById('brief-${domId}').remove();" title="Remove">×</button>
+    </div>
+  `;
+  document.getElementById('briefs-list').appendChild(card);
+}
+
+function renderBullets(val) {
+  if (!val) return '—';
+  if (Array.isArray(val)) {
+    if (val.length === 0) return '—';
+    return '<ul style="margin:0;padding-left:16px;">' + val.map(b => `<li style="margin-bottom:3px;">${esc(b)}</li>`).join('') + '</ul>';
+  }
+  return esc(val);
+}
+
+function renderBriefCard(name, brief) {
+  const domId = toId(name);
+  document.getElementById('brief-' + domId)?.remove();
+
+  const card = document.createElement('div');
+  card.className = 'brief-card' + (brief.skip ? ' skipped' : '');
+  card.id = 'brief-' + domId;
+
+  card.innerHTML = `
+    <div class="card-row" style="margin-bottom:8px;">
+      <div>
+        <div class="brief-name">${esc(name)}</div>
+        <div class="brief-title-text">${esc(brief.title || '')}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${brief.score ? `<span class="score-pill">${brief.score}/10</span>` : ''}
+        <label class="skip-toggle" style="margin-top:0;">
+          <input type="checkbox" ${brief.skip ? 'checked' : ''} onchange="toggleSkip(${esc(JSON.stringify(name))}, this.checked)" />
+          Skip
+        </label>
+        <button class="card-delete-btn" onclick="deleteCandidate(${esc(JSON.stringify(name))}); document.getElementById('brief-${toId(name)}').remove();" title="Remove">×</button>
+      </div>
+    </div>
+    ${brief._error ? `<div style="color:#dc2626;font-size:13px;">Error: ${esc(brief._error)}</div>` : `
+      <div class="brief-row"><span class="brief-key">LinkedIn</span><span class="brief-val">${brief.linkedin ? `<a class="link" href="${esc(brief.linkedin)}" target="_blank">${esc(brief.linkedin)}</a>` : '—'}</span></div>
+      <div class="brief-row"><span class="brief-key">Website</span><span class="brief-val">${brief.website ? `<a class="link" href="${esc(brief.website)}" target="_blank">${esc(brief.website)}</a>` : 'Not found'}</span></div>
+      <div class="brief-row"><span class="brief-key">Who they are</span><span class="brief-val">${renderBullets(brief.whoTheyAre)}</span></div>
+      <div class="brief-row"><span class="brief-key">Why relevant</span><span class="brief-val">${renderBullets(brief.whyRelevant)}</span></div>
+      ${(() => {
+        const cand = S.campaign.candidates.find(x => x.name === name);
+        const signal = cand?.signal || '';
+        if (!signal) return '';
+        return `<div class="brief-row hook-row"><span class="brief-key">Discovery note</span><span class="brief-val" style="color:#555;font-style:italic;">${esc(signal)}</span></div>`;
+      })()}
+    `}
+  `;
+  document.getElementById('briefs-list').appendChild(card);
+}
+
+function toggleSkip(name, skip) {
+  S.campaign.briefs[name].skip = skip;
+  document.getElementById('brief-' + toId(name))?.classList.toggle('skipped', skip);
+  save();
+}
+
+let msgLength = 'long';
+function setMsgLength(val, btn) {
+  msgLength = val;
+  document.querySelectorAll('#msg-length-toggle .link-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function goToMessages() {
+  const active = Object.keys(S.campaign.briefs).filter(n => !S.campaign.briefs[n].skip);
+  if (active.length === 0) { alert('All people are skipped — un-skip at least one.'); return; }
+  S.campaign.phase = 4;
+  S.campaign.msgLength = msgLength;
+  save();
+  renderMessages(true);
+  showScreen('messages');
+}
+
+// ─────────────────────────────────────────
+// MESSAGES SCREEN
+// ─────────────────────────────────────────
+
+function renderMessages(generateNew) {
+  const c = S.campaign;
+  renderProgress('msgs-progress', 4, c.mode);
+  document.getElementById('header-campaign-label').textContent = c.topic;
+  document.getElementById('msgs-list').innerHTML = '';
+  hideError('msgs-error');
+
+  if (generateNew) {
+    generateAllMessages();
+  } else {
+    Object.keys(c.messages).forEach(name => renderMessageCard(name, c.messages[name]));
+  }
+}
+
+async function generateAllMessages() {
+  const c = S.campaign;
+  const names = Object.keys(c.briefs).filter(n => !c.briefs[n].skip);
+  showLoading('msgs-loading', `Drafting message 1 of ${names.length}...`);
+
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+    document.getElementById('msgs-loading-text').textContent = `Drafting message for ${name} (${i + 1}/${names.length})...`;
+    try {
+      const brief = c.briefs[name];
+      const profile = c.profiles[name] || '';
+      const isShort = (c.msgLength || msgLength) === 'short';
+      const msgSystemPrompt = isShort
+        ? `You draft short LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+
+Message format rules:
+- Under 200 characters total including the greeting
+- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence stating what you want, e.g. would you be open to a quick chat?]"
+- No sign-off, no name, no title, no company at the end
+- Casual and direct, like a quick DM to someone you just discovered
+- No em dashes (—). Use a comma or just end the sentence.
+- No filler. Every word must earn its place.
+
+Match the tone, length, and structure of these examples exactly:
+${OUTREACH_EXAMPLES_SHORT}`
+        : `You draft personalised LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+Always sign off as:
+Thanks,
+Nitya Negi
+Digital Innovation & AI
+Cartier-HK APAC
+
+Message format rules:
+- 3 to 5 short paragraphs
+- Open with a specific observation about their work, sourced only from their profile context — name something concrete (a project, piece they wrote, talk, role, or experience) that clearly connects to the campaign goal. If nothing connects clearly, open with their overall background.
+- Second paragraph: give brief context on who Nitya is and what Cartier APAC's Digital Innovation team is building or trying to understand.
+- Third paragraph: make a clear, low-friction ask (20-min call, quick chat).
+- Optional closing line before sign-off if it adds warmth.
+- End with the sign-off above.
+
+Tone rules:
+- Casual and human, not formal or corporate. Write like a real person sending a DM.
+- Use personal pronouns naturally (I, you, we, your). No passive voice.
+- No em dashes (—). Use a comma or just end the sentence.
+- No filler sentences. No formal or stiff phrases. Only words you would actually say out loud.
+
+Match the tone, length, and structure of these examples exactly:
+${OUTREACH_EXAMPLES_LONG}`;
+
+      const msg = await callAI(
+        msgSystemPrompt,
+        `Draft an outreach message for this person.
+
+Name: ${name}
+Role: ${esc(brief.title || '')}
+
+Profile context (sole source for the opening — only reference what is explicitly stated here):
+${profile}
+
+Campaign topic: ${c.topic}
+Goal: ${c.goal}
+
+Start with "Hi ${name.split(' ')[0]},". Return only the message text.`
+      );
+
+      c.messages[name] = {
+        linkedin: brief.linkedin || '',
+        website: brief.website || '',
+        message: msg.trim()
+      };
+    } catch (err) {
+      c.messages[name] = { linkedin: '', website: '', message: '', _error: err.message };
+    }
+    save();
+    renderMessageCard(name, c.messages[name]);
+  }
+
+  hideLoading('msgs-loading');
+}
+
+function renderMessageCard(name, msg) {
+  const domId = toId(name);
+  document.getElementById('msg-' + domId)?.remove();
+
+  const card = document.createElement('div');
+  card.className = 'message-card';
+  card.id = 'msg-' + domId;
+
+  card.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px;">
+      <div class="msg-name" style="margin:0;">${esc(name)}</div>
+      <button class="card-delete-btn" onclick="deleteCandidate(${esc(JSON.stringify(name))}); document.getElementById('msg-${domId}').remove();" title="Remove">×</button>
+    </div>
+    <div class="msg-links">
+      ${msg.linkedin ? `<a class="link" href="${esc(msg.linkedin)}" target="_blank">LinkedIn</a>` : ''}
+      ${msg.linkedin && msg.website ? ' &middot; ' : ''}
+      ${msg.website ? `<a class="link" href="${esc(msg.website)}" target="_blank">Website</a>` : ''}
+    </div>
+    ${msg._error ? `<div style="color:#dc2626;font-size:13px;">Error: ${esc(msg._error)}</div>` : `
+      <div class="msg-text" id="msg-text-${domId}" spellcheck="true">${esc(msg.message)}</div>
+      <div class="msg-actions">
+        <button class="btn btn-secondary btn-sm" id="copy-btn-${domId}" onclick="copyMsg(${esc(JSON.stringify(name))})">Copy</button>
+        <button class="btn btn-ghost btn-sm" id="edit-btn-${domId}" onclick="editMsg(${esc(JSON.stringify(name))})">Edit</button>
+        <button class="btn btn-ghost btn-sm" id="revise-btn-${domId}" onclick="toggleRevise(${esc(JSON.stringify(name))})">Revise with note</button>
+        <button class="btn btn-ghost btn-sm" id="regen-btn-${domId}" onclick="regenMsg(${esc(JSON.stringify(name))})">Regenerate</button>
+      </div>
+      <div id="revise-${domId}" style="display:none; margin-top:10px; gap:8px; align-items:center;">
+        <input type="text" id="revise-input-${domId}" placeholder="e.g. make it shorter, focus on their podcast" style="flex:1; margin:0;" />
+        <button class="btn btn-secondary btn-sm" onclick="reviseMsg(${esc(JSON.stringify(name))})">Apply</button>
+        <button class="btn btn-ghost btn-sm" onclick="toggleRevise(${esc(JSON.stringify(name))})">Cancel</button>
+      </div>
+    `}
+  `;
+  document.getElementById('msgs-list').appendChild(card);
+}
+
+function copyMsg(name) {
+  const msg = S.campaign.messages[name]?.message;
+  if (!msg) return;
+  const domId = toId(name);
+  const btn = document.getElementById('copy-btn-' + domId);
+  navigator.clipboard.writeText(msg).then(() => {
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy'; }, 1800); }
+  }).catch(() => {
+    // Fallback for file:// protocol
+    const ta = document.createElement('textarea');
+    ta.value = msg;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy'; }, 1800); }
+  });
+}
+
+function copyTextById(elemId) {
+  const el = document.getElementById(elemId);
+  if (!el) return;
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => toast('Copied')).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    toast('Copied');
+  });
+}
+
+function editMsg(name) {
+  const domId = toId(name);
+  const el = document.getElementById('msg-text-' + domId);
+  const btn = document.getElementById('edit-btn-' + domId);
+  if (!el || !btn) return;
+
+  const isEditing = el.dataset.editing === 'true';
+  if (isEditing) {
+    // Save
+    S.campaign.messages[name].message = el.innerText.trim();
+    save();
+    el.contentEditable = 'false';
+    el.dataset.editing = 'false';
+    el.style.outline = '';
+    el.style.background = '';
+    btn.textContent = 'Edit';
+    btn.classList.remove('btn-primary');
+    btn.classList.add('btn-ghost');
+    toast('Saved');
+  } else {
+    // Enter edit mode
+    el.contentEditable = 'true';
+    el.dataset.editing = 'true';
+    el.style.outline = '1.5px solid #1a1a1a';
+    el.style.background = 'white';
+    el.focus();
+    // Move cursor to end
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    btn.textContent = 'Save';
+    btn.classList.remove('btn-ghost');
+    btn.classList.add('btn-primary');
+  }
+}
+
+function toggleRevise(name) {
+  const domId = toId(name);
+  const row = document.getElementById('revise-' + domId);
+  const btn = document.getElementById('revise-btn-' + domId);
+  if (!row) return;
+  const isOpen = row.style.display !== 'none';
+  row.style.display = isOpen ? 'none' : 'flex';
+  if (btn) btn.style.color = isOpen ? '' : '#1a1a1a';
+  if (!isOpen) document.getElementById('revise-input-' + domId)?.focus();
+}
+
+async function reviseMsg(name) {
+  const domId = toId(name);
+  const input = document.getElementById('revise-input-' + domId);
+  const note = input?.value.trim();
+  if (!note) { input?.focus(); return; }
+  const current = S.campaign.messages[name]?.message || '';
+  const applyBtn = document.querySelector(`#revise-${domId} .btn-secondary`);
+  if (applyBtn) { applyBtn.textContent = 'Revising…'; applyBtn.disabled = true; }
+  try {
+    const revised = await callAI(
+      `You revise LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+Sign off as:
+Thanks,
+Nitya Negi
+Digital Innovation & AI
+Cartier-HK APAC`,
+      `Revise this message based on the note. Keep the same casual, personal tone.
+
+Current message:
+${current}
+
+Revision note: ${note}
+
+Return only the revised message.`
+    );
+    S.campaign.messages[name].message = revised.trim();
+    save();
+    const el = document.getElementById('msg-text-' + domId);
+    if (el) { el.textContent = revised.trim(); el.dataset.editing = 'false'; }
+    if (input) input.value = '';
+    toggleRevise(name);
+    toast('Revised');
+  } catch (err) {
+    toast('Error: ' + err.message);
+  } finally {
+    if (applyBtn) { applyBtn.textContent = 'Apply'; applyBtn.disabled = false; }
+  }
+}
+
+async function regenMsg(name) {
+  const c = S.campaign;
+  const brief = c.briefs[name] || {};
+  const profile = c.profiles[name] || '';
+  const domId = toId(name);
+  const el = document.getElementById('msg-text-' + domId);
+  const btn = document.getElementById('regen-btn-' + domId);
+  if (btn) { btn.textContent = 'Regenerating…'; btn.disabled = true; }
+  if (el) { el.style.opacity = '0.4'; }
+
+  const isShortRegen = (c.msgLength || msgLength) === 'short';
+  const regenSystemPrompt = isShortRegen
+    ? `You draft short LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+
+Message format rules:
+- Under 200 characters total including the greeting
+- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence stating what you want, e.g. would you be open to a quick chat?]"
+- No sign-off, no name, no title, no company at the end
+- Casual and direct, like a quick DM to someone you just discovered
+- No em dashes (—). Use a comma or just end the sentence.
+- No filler. Every word must earn its place.
+
+Match the tone, length, and structure of these examples exactly:
+${OUTREACH_EXAMPLES_SHORT}`
+    : `You draft personalised LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+Always sign off as:
+Thanks,
+Nitya Negi
+Digital Innovation & AI
+Cartier-HK APAC
+
+Message format rules:
+- 3 to 5 short paragraphs
+- Open with a specific observation about their work, sourced only from their profile context — name something concrete (a project, piece they wrote, talk, role, or experience) that clearly connects to the campaign goal. If nothing connects clearly, open with their overall background.
+- Second paragraph: give brief context on who Nitya is and what Cartier APAC's Digital Innovation team is building or trying to understand.
+- Third paragraph: make a clear, low-friction ask (20-min call, quick chat).
+- Optional closing line before sign-off if it adds warmth.
+- End with the sign-off above.
+
+Tone rules:
+- Casual and human, not formal or corporate. Write like a real person sending a DM.
+- Use personal pronouns naturally (I, you, we, your). No passive voice.
+- No em dashes (—). Use a comma or just end the sentence.
+- No filler sentences. No formal or stiff phrases. Only words you would actually say out loud.
+
+Match the tone, length, and structure of these examples exactly:
+${OUTREACH_EXAMPLES_LONG}`;
+
+  try {
+    const msg = await callAI(
+      regenSystemPrompt,
+      `Draft a fresh outreach message for ${name}.
+
+Role: ${brief.title || ''}
+
+Profile context (sole source for the opening — only reference what is explicitly stated here):
+${profile}
+
+Campaign topic: ${c.topic}
+Goal: ${c.goal}
+
+Start with "Hi ${name.split(' ')[0]},". Return only the message.`
+    );
+    c.messages[name].message = msg.trim();
+    save();
+    if (el) { el.textContent = msg.trim(); el.style.opacity = ''; }
+    if (btn) { btn.textContent = 'Regenerate'; btn.disabled = false; }
+    toast('Regenerated');
+  } catch (err) {
+    if (el) { el.textContent = c.messages[name]?.message || ''; el.style.opacity = ''; }
+    if (btn) { btn.textContent = 'Regenerate'; btn.disabled = false; }
+    toast('Error: ' + err.message);
+  }
+}
+
+// ─────────────────────────────────────────
+// EXPORTS
+// ─────────────────────────────────────────
+
+function exportBriefs() {
+  const c = S.campaign;
+  let md = `# Briefs — ${c.topic}\n**Campaign:** ${c.id}\n\n---\n\n`;
+  Object.keys(c.briefs).forEach(name => {
+    const b = c.briefs[name];
+    md += `## ${name}\n`;
+    md += `**Title:** ${b.title || ''}\n`;
+    md += `**LinkedIn:** ${b.linkedin || ''}\n`;
+    md += `**Personal website:** ${b.website || 'No personal website found'}\n`;
+    md += `**Who they are:**\n${Array.isArray(b.whoTheyAre) ? b.whoTheyAre.map(x => `- ${x}`).join('\n') : (b.whoTheyAre || '')}\n`;
+    md += `**Why relevant:**\n${Array.isArray(b.whyRelevant) ? b.whyRelevant.map(x => `- ${x}`).join('\n') : (b.whyRelevant || '')}\n`;
+    md += `**Relevance score:** ${b.score || '—'}/10\n`;
+    md += `\n---\n\n`;
+  });
+  download('briefs.md', md);
+}
+
+function exportMessages() {
+  const c = S.campaign;
+  let md = `# Outreach Messages — ${c.topic}\n**Campaign:** ${c.id}\n\n---\n\n`;
+  Object.keys(c.messages).forEach(name => {
+    const m = c.messages[name];
+    md += `## ${name}\n`;
+    md += `**LinkedIn:** ${m.linkedin || ''}\n`;
+    md += `**Personal website:** ${m.website || 'No personal website found'}\n\n`;
+    md += `**Message:**\n${m.message || ''}\n\n---\n\n`;
+  });
+  download('outreach.md', md);
+}
+
+function download(filename, content) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([content], { type: 'text/markdown' }));
+  a.download = filename;
+  a.click();
+}
+
+// ─────────────────────────────────────────
+// QUICK ADD
+// ─────────────────────────────────────────
+
+let qaCount = 0;
+
+function renderQuickAdd() {
+  document.getElementById('header-campaign-label').textContent = '';
+  const sel = document.getElementById('qa-campaign-select');
+  const campaigns = Object.values(S.campaigns);
+  sel.innerHTML = campaigns.length === 0
+    ? '<option value="">No campaigns yet — create one first</option>'
+    : campaigns.map(c => `<option value="${esc(c.id)}">${esc(c.topic)}</option>`).join('');
+  qaCount = 0;
+  document.getElementById('qa-people').innerHTML = '';
+  document.getElementById('qa-results').innerHTML = '';
+  hideError('qa-error');
+  addQAPerson();
+  updateQAContext();
+}
+
+function updateQAContext() {
+  const id = document.getElementById('qa-campaign-select').value;
+  const c = S.campaigns[id];
+  const el = document.getElementById('qa-campaign-context');
+  if (!c) { el.innerHTML = '<span style="color:#bbb;">Select a campaign to see its context.</span>'; return; }
+  el.innerHTML = `
+    <div class="qa-context-field"><div class="qa-context-label">Topic</div><div class="qa-context-value">${esc(c.topic)}</div></div>
+    <div class="qa-context-field"><div class="qa-context-label">Expert type</div><div class="qa-context-value">${esc(c.expertType || '—')}</div></div>
+    <div class="qa-context-field"><div class="qa-context-label">Goal</div><div class="qa-context-value">${esc(c.goal || '—')}</div></div>
+  `;
+}
+
+function addQAPerson() {
+  qaCount++;
+  const n = qaCount;
+  const div = document.createElement('div');
+  div.className = 'profile-section';
+  div.style.marginBottom = '10px';
+  div.innerHTML = `
+    <div class="profile-section-header" style="cursor:default;">Person ${n}</div>
+    <div class="profile-section-body">
+      <label>Name</label>
+      <input type="text" class="qa-name" placeholder="Full name" />
+      <div style="display:flex;align-items:center;gap:8px;margin-top:4px;margin-bottom:6px;">
+        <label style="margin:0;">Link</label>
+        <div class="link-type-toggle qa-link-toggle">
+          <button class="link-type-btn active" onclick="setQALinkType(this, 'linkedin')">LinkedIn</button>
+          <button class="link-type-btn" onclick="setQALinkType(this, 'company')">Company</button>
+          <button class="link-type-btn" onclick="setQALinkType(this, 'other')">Other</button>
+        </div>
+      </div>
+      <input type="text" class="qa-link" id="qa-link-${n}" placeholder="https://linkedin.com/in/..." />
+      <label class="qa-profile-label" id="qa-profile-label-${n}">LinkedIn profile text</label>
+      <textarea class="tall qa-profile" id="qa-profile-${n}" placeholder="Paste full LinkedIn profile text here..."></textarea>
+    </div>
+  `;
+  document.getElementById('qa-people').appendChild(div);
+}
+
+function setQALinkType(btn, type) {
+  const body = btn.closest('.profile-section-body');
+  body.querySelectorAll('.link-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const input = body.querySelector('.qa-link');
+  const label = body.querySelector('.qa-profile-label');
+  const textarea = body.querySelector('.qa-profile');
+  if (input) input.placeholder = LINK_PLACEHOLDERS[type];
+  if (label) label.textContent = PROFILE_TEXT_LABELS[type] || 'Profile text';
+  if (textarea) textarea.placeholder = PROFILE_TEXT_PLACEHOLDERS[type] || 'Paste text here...';
+  body.dataset.linkType = type;
+}
+
+async function runQuickAdd() {
+  const id = document.getElementById('qa-campaign-select').value;
+  if (!id) { alert('Select a campaign first.'); return; }
+  const c = S.campaigns[id];
+  const prov = PROVIDERS[S.provider];
+
+  const sections = [...document.querySelectorAll('#qa-people .profile-section-body')];
+  const people = sections.map(sec => ({
+    name: sec.querySelector('.qa-name')?.value.trim() || '',
+    profile: sec.querySelector('.qa-profile')?.value.trim() || '',
+    linkType: sec.dataset.linkType || 'linkedin',
+    linkUrl: sec.querySelector('.qa-link')?.value.trim() || ''
+  })).filter(p => p.name && p.profile);
+
+  if (people.length === 0) { alert('Add at least one person with a name and profile text.'); return; }
+
+  showLoading('qa-loading', 'Processing...');
+  hideError('qa-error');
+  document.getElementById('qa-results').innerHTML = '';
+
+  const results = [];
+  for (const person of people) {
+    try {
+      const briefRaw = await callAI(
+        'You research experts for Cartier Digital Innovation outreach. Return only valid JSON.',
+        `Generate a brief for this person.
+
+Name: ${person.name}
+Profile context:
+${person.profile}
+
+Campaign topic: ${c.topic}
+Looking for: ${c.expertType || ''}
+Goal: ${c.goal}
+
+${prov.webSearch ? `Search the web for their personal website or blog (e.g. "${person.name} website" or "${person.name} blog").` : ''}
+
+Each bullet in whoTheyAre and whyRelevant must be a single short phrase or sentence — no long sentences, no paragraphs.
+
+Return ONLY this JSON object:
+{
+  "title": "current role and company",
+  "linkedin": "their LinkedIn URL from the profile context, or empty string",
+  "website": "their personal website URL, or empty string if not found",
+  "whoTheyAre": ["one short phrase or sentence", "one short phrase or sentence"],
+  "whyRelevant": ["one short phrase or sentence", "one short phrase or sentence"],
+  "score": 8
+}`,
+        { useWebSearch: prov.webSearch }
+      );
+      const brief = parseJSON(briefRaw);
+      if (!brief) throw new Error('Could not parse brief.');
+
+      c.profiles[person.name] = person.profile;
+      c.briefs[person.name] = { ...brief, skip: false };
+
+      const isShortQA = (c.msgLength || msgLength) === 'short';
+      const qaMsgSystemPrompt = isShortQA
+        ? `You draft short LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+
+Message format rules:
+- Under 200 characters total including the greeting
+- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence stating what you want, e.g. would you be open to a quick chat?]"
+- No sign-off, no name, no title, no company at the end
+- Casual and direct, like a quick DM to someone you just discovered
+- No em dashes (—). Use a comma or just end the sentence.
+- No filler. Every word must earn its place.
+
+Match the tone, length, and structure of these examples exactly:
+${OUTREACH_EXAMPLES_SHORT}`
+        : `You draft personalised LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+Always sign off as:
+Thanks,
+Nitya Negi
+Digital Innovation & AI
+Cartier-HK APAC
+
+Message format rules:
+- 3 to 5 short paragraphs
+- Open with a specific observation about their work, sourced only from their profile context — name something concrete (a project, piece they wrote, talk, role, or experience) that clearly connects to the campaign goal. If nothing connects clearly, open with their overall background.
+- Second paragraph: give brief context on who Nitya is and what Cartier APAC's Digital Innovation team is building or trying to understand.
+- Third paragraph: make a clear, low-friction ask (20-min call, quick chat).
+- Optional closing line before sign-off if it adds warmth.
+- End with the sign-off above.
+
+Tone rules:
+- Casual and human, not formal or corporate. Write like a real person sending a DM.
+- Use personal pronouns naturally (I, you, we, your). No passive voice.
+- No em dashes (—). Use a comma or just end the sentence.
+- No filler sentences. No formal or stiff phrases. Only words you would actually say out loud.
+
+Match the tone, length, and structure of these examples exactly:
+${OUTREACH_EXAMPLES_LONG}`;
+
+      const msg = await callAI(
+        qaMsgSystemPrompt,
+        `Draft an outreach message for this person.
+
+Name: ${person.name}
+Role: ${brief.title || ''}
+
+Profile context (sole source for the opening — only reference what is explicitly stated here):
+${person.profile}
+
+Campaign topic: ${c.topic}
+Goal: ${c.goal}
+
+Start with "Hi ${person.name.split(' ')[0]},". Return only the message text.`
+      );
+
+      c.messages[person.name] = { linkedin: brief.linkedin || '', website: brief.website || '', message: msg.trim() };
+      save();
+      results.push({ name: person.name, success: true, message: msg.trim() });
+    } catch (err) {
+      results.push({ name: person.name, success: false, error: err.message });
+    }
+  }
+
+  hideLoading('qa-loading');
+
+  const resultEl = document.getElementById('qa-results');
+  resultEl.innerHTML = `<h3 style="margin-bottom:12px;margin-top:16px;">Results</h3>` +
+    results.map(r => `
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:6px;">${esc(r.name)}</div>
+        ${r.success
+          ? `<div class="msg-text" id="qa-msg-${esc(r.name)}">${esc(r.message)}</div>
+             <div style="margin-top:8px;">
+               <button class="btn btn-secondary btn-sm" onclick="copyTextById('qa-msg-${esc(r.name)}')">Copy</button>
+             </div>`
+          : `<div style="color:#dc2626;font-size:13px;">Error: ${esc(r.error)}</div>`
+        }
+      </div>
+    `).join('');
+
+  if (results.some(r => r.success)) {
+    resultEl.innerHTML += `<button class="btn btn-secondary btn-sm mt-8" onclick="exportQAMessages('${id}')">Export updated outreach.md</button>`;
+  }
+  toast(`Done — ${results.filter(r => r.success).length}/${results.length} processed`);
+}
+
+function exportQAMessages(id) {
+  const c = S.campaigns[id];
+  let md = `# Outreach Messages — ${c.topic}\n**Campaign:** ${c.id}\n\n---\n\n`;
+  Object.keys(c.messages).forEach(name => {
+    const m = c.messages[name];
+    md += `## ${name}\n**LinkedIn:** ${m.linkedin || ''}\n**Personal website:** ${m.website || 'No personal website found'}\n\n**Message:**\n${m.message || ''}\n\n---\n\n`;
+  });
+  download('outreach.md', md);
+}
+
+// ─────────────────────────────────────────
+// AI API
+// ─────────────────────────────────────────
+
+async function callAI(system, user, { useWebSearch = false } = {}) {
+  const prov = PROVIDERS[S.provider];
+
+  if (prov.format === 'anthropic') {
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': S.apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    };
+    const body = {
+      model: prov.model,
+      max_tokens: 4096,
+      system,
+      messages: [{ role: 'user', content: user }]
+    };
+    if (useWebSearch && prov.webSearch) {
+      body.tools = [{ type: 'web_search_20250305', name: 'web_search' }];
+      headers['anthropic-beta'] = 'web-search-2025-03-05';
+    }
+    const res = await fetch(prov.endpoint, { method: 'POST', headers, body: JSON.stringify(body) });
+    if (!res.ok) {
+      const e = await res.json().catch(() => ({}));
+      throw new Error(e.error?.message || `API error ${res.status}`);
+    }
+    const data = await res.json();
+    return data.content.filter(b => b.type === 'text').map(b => b.text).join('');
+
+  } else {
+    const res = await fetch(prov.endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${S.apiKey}`
+      },
+      body: JSON.stringify({
+        model: prov.model,
+        max_tokens: 4096,
+        messages: [
+          { role: 'system', content: system },
+          { role: 'user', content: user }
+        ]
+      })
+    });
+    if (!res.ok) {
+      const e = await res.json().catch(() => ({}));
+      throw new Error(e.error?.message || `API error ${res.status}`);
+    }
+    const data = await res.json();
+    return data.choices[0].message.content;
+  }
+}
+
+// ─────────────────────────────────────────
+// STORAGE
+// ─────────────────────────────────────────
+
+function save() {
+  localStorage.setItem('campaigns', JSON.stringify(S.campaigns));
+}
+
+// ─────────────────────────────────────────
+// UTILITIES
+// ─────────────────────────────────────────
+
+function parseJSON(text) {
+  if (!text) return null;
+  const t = text.trim();
+  try { return JSON.parse(t); } catch {}
+  const arr = t.match(/\[[\s\S]*\]/);
+  if (arr) { try { return JSON.parse(arr[0]); } catch {} }
+  const obj = t.match(/\{[\s\S]*\}/);
+  if (obj) { try { return JSON.parse(obj[0]); } catch {} }
+  const code = t.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (code) { try { return JSON.parse(code[1]); } catch {} }
+  return null;
+}
+
+function esc(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function toId(str) {
+  return String(str || '').replace(/[^a-z0-9]/gi, '-').toLowerCase();
+}
+
+function showLoading(id, text) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = 'flex';
+  const span = el.querySelector('span');
+  if (span && text) span.textContent = text;
+}
+
+function hideLoading(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'none';
+}
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
+}
+
+function hideError(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'none';
+}
+
+function toast(msg) {
+  document.querySelector('.toast')?.remove();
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2600);
+}
+</script>
+</body>
+</html>

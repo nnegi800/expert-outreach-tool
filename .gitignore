@@ -1,0 +1,8 @@
+# Campaign outputs — contain personal data, not tracked
+outreach/
+
+# Excel tracker
+*.xlsx
+
+# macOS
+.DS_Store
