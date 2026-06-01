@@ -38,7 +38,7 @@ AI reads each person's profile context and generates a brief covering who they a
 ### Phase 4 — Messages
 AI drafts a personalised outreach message for each non-skipped person using their brief and profile context as the only source. Two format options before drafting:
 - **Long** — 3 to 5 short paragraphs with a sign-off
-- **Short** — under 200 characters, no sign-off, direct DM style
+- **Short** — under 200 characters, no sign-off, for sending a LinkedIn connection request message without Premium
 
 Each message card has Copy, Edit, Revise with note, and Regenerate options. All messages can be exported as a markdown file.
 
