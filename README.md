@@ -63,17 +63,6 @@ API keys are stored in your browser. They are never sent anywhere except the pro
 
 ---
 
-## Style reference
-
-`examples/outreach_examples.txt` contains real outreach messages that worked. The file is embedded in `index.html` as two constants:
-
-- `OUTREACH_EXAMPLES_LONG` — 3 multi-paragraph messages used as the style reference for long drafts
-- `OUTREACH_EXAMPLES_SHORT` — 4 short messages used as the style reference for under-200-character drafts
-
-To update the style reference, edit these constants directly in `index.html`.
-
----
-
 ## Modifying the tool
 
 All logic is in `index.html`. Common things to change:
@@ -84,3 +73,76 @@ All logic is in `index.html`. Common things to change:
 | Message style examples | `OUTREACH_EXAMPLES_LONG` and `OUTREACH_EXAMPLES_SHORT` constants |
 | AI model | `PROVIDERS` object at the top of the `<script>` section |
 | Message prompt rules | `msgSystemPrompt` inside `generateAllMessages()` |
+
+### Style reference
+
+`examples/outreach_examples.txt` contains real outreach messages that worked. The file is embedded in `index.html` as two constants:
+
+- `OUTREACH_EXAMPLES_LONG` — 3 multi-paragraph messages used as the style reference for long drafts
+- `OUTREACH_EXAMPLES_SHORT` — 4 short messages used as the style reference for under-200-character drafts
+
+To update the style reference, edit these constants directly in `index.html`.
+
+### API prompts
+
+The tool makes six types of API calls. These are the exact instructions sent to the model at each step.
+
+---
+
+**1. Discovery — generate search queries**
+
+> Generate 6–10 search queries to find the most relevant experts for this campaign. These queries will be run on any search platform — they are not limited to LinkedIn. Think about where practitioners in this space actually publish and get discovered.
+>
+> Mix query types: `site:linkedin.com/in`, podcast guest, conference speaker, newsletter author, case study author, company role blog.
+>
+> Return a JSON array of search query strings.
+
+---
+
+**2. Discovery — find candidates** *(web search enabled providers only)*
+
+> Search the web using the generated queries and return up to 8 relevant experts. Prioritise practitioners who have actually shipped, written about, or spoken on the topic — not just people with the right job title. Leave the LinkedIn URL empty rather than guessing. The signal field is a one-sentence summary of why this person is relevant — used as context only, not as a message hook.
+>
+> Return a JSON array: `[{ name, title, linkedin, signal }]`
+
+---
+
+**3. Brief generation** *(one call per person)*
+
+> Generate a brief for this person based on their profile context.
+>
+> Each bullet in `whoTheyAre` and `whyRelevant` must be a single short phrase or sentence — no long sentences, no paragraphs.
+>
+> Return JSON: `{ title, linkedin, website, whoTheyAre: [...], whyRelevant: [...], score }`
+
+---
+
+**4a. Message draft — Long**
+
+> You draft personalised LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC. Always sign off as: Nitya Negi / Digital Innovation & AI / Cartier-HK APAC.
+>
+> Message format: 3 to 5 short paragraphs. Open with a specific observation about their work sourced only from their profile context — name something concrete (a project, piece they wrote, talk, role, or experience) that clearly connects to the campaign goal. If nothing connects clearly, open with their overall background. Second paragraph: brief context on who Nitya is and what the team is building. Third paragraph: a clear, low-friction ask (20-min call, quick chat). Optional closing line. End with sign-off.
+>
+> Tone: casual and human, not formal or corporate. Personal pronouns. No em dashes. No filler sentences. No formal phrases.
+>
+> Match the tone, length, and structure of the embedded long examples exactly.
+
+**4b. Message draft — Short**
+
+> You draft short LinkedIn outreach messages for Nitya Negi, Digital Innovation & AI, Cartier APAC.
+>
+> Message format: under 200 characters total including the greeting. Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence stating what you want.]" No sign-off, no name, no title, no company. No em dashes. No filler.
+>
+> Match the tone, length, and structure of the embedded short examples exactly.
+
+---
+
+**5. Revise message**
+
+> Revise the current message based on a note provided by the user. Keep the same casual, personal tone. Return only the revised message.
+
+---
+
+**6. Quick Add** *(Option B)*
+
+> Uses the same brief prompt as step 3 and the same message prompt as step 4a or 4b, scoped to the selected existing campaign's topic, expert type, and goal.
