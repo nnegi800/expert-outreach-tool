@@ -607,9 +607,19 @@
       <option value="openai">OpenAI (GPT)</option>
       <option value="deepseek">DeepSeek</option>
       <option value="qwen">Qwen (Alibaba)</option>
+      <option value="gemini">Google (Gemini)</option>
+      <option value="groq">Groq (Llama)</option>
     </select>
     <label id="key-label">API Key</label>
     <input type="password" id="key-input" placeholder="sk-ant-..." />
+    <div id="gemini-model-row" style="display:none;">
+      <label>Gemini Model</label>
+      <select id="gemini-model-select">
+        <option value="gemini-2.0-flash-lite">gemini-2.0-flash-lite (lightest, free tier)</option>
+        <option value="gemini-2.0-flash">gemini-2.0-flash</option>
+        <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+      </select>
+    </div>
     <p class="hint" id="key-hint">Web search is supported — AI will find candidates and research experts automatically.</p>
     <div style="margin-top: 20px;">
       <button class="btn btn-primary" onclick="submitKey()">Continue →</button>
@@ -829,7 +839,7 @@ const PROVIDERS = {
   anthropic: {
     label: 'Anthropic (Claude)',
     endpoint: 'https://api.anthropic.com/v1/messages',
-    model: 'claude-sonnet-4-6',
+    model: 'claude-haiku-4-5-20251001',
     format: 'anthropic',
     webSearch: true,
     keyPlaceholder: 'sk-ant-...',
@@ -865,6 +875,26 @@ const PROVIDERS = {
     keyPlaceholder: 'sk-...',
     keyLabel: 'DashScope API Key',
     hint: 'No built-in web search — AI will generate queries for you to run manually.'
+  },
+  groq: {
+    label: 'Groq (Llama)',
+    endpoint: 'https://api.groq.com/openai/v1/chat/completions',
+    model: 'llama-3.3-70b-versatile',
+    format: 'openai',
+    webSearch: false,
+    keyPlaceholder: 'gsk_...',
+    keyLabel: 'Groq API Key',
+    hint: 'Free tier at console.groq.com — no credit card required. No built-in web search — AI will generate queries for you to run manually.'
+  },
+  gemini: {
+    label: 'Google (Gemini)',
+    endpointBase: 'https://generativelanguage.googleapis.com/v1beta/models/',
+    model: 'gemini-2.0-flash-lite',
+    format: 'gemini',
+    webSearch: false,
+    keyPlaceholder: 'AIzaSy...',
+    keyLabel: 'Gemini API Key',
+    hint: 'Free tier available via Google AI Studio (aistudio.google.com). No built-in web search — AI will generate queries for you to run manually.'
   }
 };
 
@@ -950,6 +980,15 @@ window.addEventListener('load', () => {
   S.provider = localStorage.getItem('preferredProvider') || 'anthropic';
   const sel = document.getElementById('key-provider');
   sel.value = S.provider;
+  const savedGeminiModel = localStorage.getItem('geminiModel');
+  const validGeminiModels = ['gemini-2.0-flash-lite', 'gemini-2.0-flash', 'gemini-2.5-flash'];
+  if (savedGeminiModel && validGeminiModels.includes(savedGeminiModel)) {
+    document.getElementById('gemini-model-select').value = savedGeminiModel;
+    PROVIDERS.gemini.model = savedGeminiModel;
+    PROVIDERS.gemini.endpoint = PROVIDERS.gemini.endpointBase + savedGeminiModel + ':generateContent';
+  } else {
+    localStorage.removeItem('geminiModel');
+  }
   onProviderChange();
   const savedKey = localStorage.getItem('apiKey');
   if (savedKey) {
@@ -982,6 +1021,7 @@ function onProviderChange() {
   document.getElementById('key-label').textContent = cfg.keyLabel;
   document.getElementById('key-input').placeholder = cfg.keyPlaceholder;
   document.getElementById('key-hint').textContent = cfg.hint;
+  document.getElementById('gemini-model-row').style.display = prov === 'gemini' ? '' : 'none';
 }
 
 function submitKey() {
@@ -990,6 +1030,12 @@ function submitKey() {
   const prov = document.getElementById('key-provider').value;
   S.apiKey = key;
   S.provider = prov;
+  if (prov === 'gemini') {
+    const model = document.getElementById('gemini-model-select').value;
+    PROVIDERS.gemini.model = model;
+    PROVIDERS.gemini.endpoint = PROVIDERS.gemini.endpointBase + model + ':generateContent';
+    localStorage.setItem('geminiModel', model);
+  }
   localStorage.setItem('apiKey', key);
   localStorage.setItem('preferredProvider', prov);
   document.getElementById('key-input').value = '';
@@ -2289,6 +2335,24 @@ async function callAI(system, user, { useWebSearch = false } = {}) {
     }
     const data = await res.json();
     return data.content.filter(b => b.type === 'text').map(b => b.text).join('');
+
+  } else if (prov.format === 'gemini') {
+    const geminiEndpoint = prov.endpoint || (prov.endpointBase + prov.model + ':generateContent');
+    const res = await fetch(`${geminiEndpoint}?key=${S.apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: system }] },
+        contents: [{ role: 'user', parts: [{ text: user }] }],
+        generationConfig: { maxOutputTokens: 4096 }
+      })
+    });
+    if (!res.ok) {
+      const e = await res.json().catch(() => ({}));
+      throw new Error(e.error?.message || `API error ${res.status}`);
+    }
+    const data = await res.json();
+    return data.candidates[0].content.parts.map(p => p.text).join('');
 
   } else {
     const res = await fetch(prov.endpoint, {

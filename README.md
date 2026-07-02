@@ -2,7 +2,7 @@
 
 ![Expert Outreach Tool](preview.png)
 
-A browser-based tool for finding LinkedIn experts and drafting personalised outreach, built for Cartier Digital Innovation & AI. No install, no backend, no build step — open `index.html` and go.
+A browser-based tool for finding LinkedIn experts and drafting personalised outreach, built for Cartier Digital Innovation & AI. No install, no backend, no build step — open `ui/index.html` and go.
 
 **[▶ Watch the 2-minute demo](https://www.loom.com/share/e2cb2a8c762d446c8a30d57826498110)**
 
@@ -11,7 +11,7 @@ A browser-based tool for finding LinkedIn experts and drafting personalised outr
 ## Run it
 
 1. Download or clone this repo
-2. Open `index.html` in Chrome, Safari, or Firefox (`file://` works)
+2. Open `ui/index.html` in Chrome, Safari, or Firefox (`file://` works)
 3. Enter your API key — it stays in your browser and is only ever sent to the AI provider you pick
 
 ---
@@ -44,7 +44,7 @@ API keys are stored only in your browser and never sent anywhere except the prov
 
 ## Customising
 
-Everything lives in `index.html`. Common edits:
+Everything lives in `ui/index.html`. Common edits:
 
 | What | Where |
 |---|---|
@@ -53,4 +53,4 @@ Everything lives in `index.html`. Common edits:
 | AI model | `PROVIDERS` object |
 | Message rules | `msgSystemPrompt` in `generateAllMessages()` |
 
-The exact prompts sent at each step are defined inline in `index.html`, and real style-reference messages live in `examples/outreach_examples.txt`.
+The exact prompts sent at each step are defined inline in `ui/index.html`, and real style-reference messages live in `docs/outreach_examples.txt`.
