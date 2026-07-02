@@ -1,6 +1,6 @@
 # Expert Outreach Tool
 
-![Expert Outreach Tool](preview.png)
+![Expert Outreach Tool](docs/preview.png)
 
 A browser-based tool for finding LinkedIn experts and drafting personalised outreach, built for Cartier Digital Innovation & AI. No install, no backend, no build step — open `ui/index.html` and go.
 
